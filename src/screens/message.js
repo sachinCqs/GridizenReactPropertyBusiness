@@ -314,13 +314,13 @@ export default class Step2 extends Component {
                 {item.viewingDetail ?
                     this.showNotificationList(item, index)
                     :
-                    <View style={{ alignItems: item.sender_type == 'U' ? 'flex-start' : 'flex-end', marginHorizontal: dynamicSize(15), marginVertical: dynamicSize(10) }}>
+                    <View style={{ alignItems: item.sender_type != this.state.headerData.userid ? 'flex-start' : 'flex-end', marginHorizontal: dynamicSize(15), marginVertical: dynamicSize(10) }}>
                         <View style={{ flexDirection: 'row' }}>
-                            {item.sender_type == 'U' ?
+                            {item.sender_type != this.state.headerData.userid ?
                                 <Image style={{ zIndex: 99 }}
                                     source={require('../assets/chat/chat-tail-left.png')} />
                                 : null}
-                            <View style={{ maxWidth: '80%', zIndex: 5, marginLeft: item.sender_type == 'U' ? dynamicSize(-1) : 0, backgroundColor: item.sender_type == 'V' ? "#f3fcf2" : 'white', borderRadius: dynamicSize(6), padding: dynamicSize(10), borderTopRightRadius: item.sender_type == 'U' ? dynamicSize(6) : 0, borderTopLeftRadius: item.sender_type == 'V' ? dynamicSize(6) : 0, borderWidth: dynamicSize(1), borderColor: item.sender_type == 'V' ? '#a7cea2' : '#e7e7e7' }} >
+                            <View style={{ maxWidth: '80%', zIndex: 5, marginLeft: item.sender_type != this.state.headerData.userid ? dynamicSize(-1) : 0, backgroundColor: item.sender_type == this.state.headerData.userid ? "#f3fcf2" : 'white', borderRadius: dynamicSize(6), padding: dynamicSize(10), borderTopRightRadius: item.sender_type != this.state.headerData.userid ? dynamicSize(6) : 0, borderTopLeftRadius: item.sender_type == this.state.headerData.userid ? dynamicSize(6) : 0, borderWidth: dynamicSize(1), borderColor: item.sender_type == this.state.headerData.userid ? '#a7cea2' : '#e7e7e7' }} >
 
                                 <Text style={{ color: '#7a7a7a', fontFamily: fontFamily(), fontSize: getFontSize(16) }}>{item.message}
 
@@ -330,7 +330,7 @@ export default class Step2 extends Component {
 
 
                             </View>
-                            {item.sender_type == 'U' ?
+                            {item.sender_type != this.state.headerData.userid ?
                                 null
                                 :
                                 <Image style={{ zIndex: 99, marginLeft: dynamicSize(-1) }}

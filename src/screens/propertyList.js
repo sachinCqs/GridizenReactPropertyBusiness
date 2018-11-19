@@ -369,7 +369,9 @@ export default class Dashboard extends Component {
                 </ScrollView>
 
                 <FloatButton onPress={() =>
-                    this.props.navigation.navigate('Step1')}
+                    this.props.navigation.navigate('Step1')
+                    //this.props.navigation.navigate('DrawerOfAgent')
+                }
                 ///this.props.navigation.toggleDrawer()}
                 />
             </View>

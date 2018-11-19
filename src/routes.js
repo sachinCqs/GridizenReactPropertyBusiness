@@ -379,7 +379,7 @@ const stackLogin = createStackNavigator({
     AgentsServices: {
         screen: AgentsServices,
         navigationOptions: () => ({
-            title: "Agent Services",
+            title: "Services",
 
         })
     },
@@ -750,7 +750,7 @@ const stackWithoutLoginOfAgent = createStackNavigator({
     AgentsServices: {
         screen: AgentsServices,
         navigationOptions: () => ({
-            title: "Agent Services",
+            title: "Services",
 
         })
     },
@@ -1132,157 +1132,295 @@ const stackWithoutLoginOfAgent = createStackNavigator({
         },
     },
 )
-const stackWithoutLogin = createStackNavigator({
-
-    Login: {
-        screen: Login,
-        navigationOptions: () => ({
-            header: null
-        })
-    },
-    GoogleAutoCompleteList: {
-        screen: GoogleAutoCompleteList,
-    },
-    ProfilePic: {
-        screen: ProfilePic,
-        navigationOptions: () => ({
-            title: "Profile Picture",
-
-        })
-    },
-    Drawer: {
-        screen: Drawer,
-        navigationOptions: () => ({
-            header: null
-        })
-    },
-    DrawerOfAgent: {
-        screen: DrawerOfAgent,
-        navigationOptions: () => ({
-            header: null
-        })
-    },
-    LocalAgents: {
-        screen: LocalAgents,
-        navigationOptions: () => ({
-            header: null
-
-        })
-    },
-    AgentDescription: {
-        screen: AgentDescription,
-        navigationOptions: () => ({
-            title: "Agent",
-
-        })
-    },
-    AgentsServices: {
-        screen: AgentsServices,
-        navigationOptions: () => ({
-            title: "Agent Services",
-
-        })
-    },
-    MyServices: {
-        screen: MyServices,
-        navigationOptions: () => ({
-            header: null
-
-        })
-    },
-    Step1: {
-        screen: Step1,
-        navigationOptions: () => ({
-            title: "Add Property",
+function stackWithoutLogin(initialRoute) {
 
 
-            //headerTitleStyle: { width:width-70,textAlign:'center',color:themeColor },
-        })
-    },
-    NotificationDetail: {
-        screen: NotificationDetail,
-    },
-    PropertyList: {
-        screen: PropertyList,
-        navigationOptions: ({ navigation }) => ({
-            title: "Your Properties",
-            headerTintColor: '#7a7a7a',
+    return createStackNavigator({
 
-            // headerStyle: {  },
-            headerTitleStyle: {
-                width: '100%',
-                textAlign: 'center',
+        Login: {
+            screen: Login,
+            navigationOptions: () => ({
+                header: null
+            })
+        },
+        GoogleAutoCompleteList: {
+            screen: GoogleAutoCompleteList,
+        },
+        ProfilePic: {
+            screen: ProfilePic,
+            navigationOptions: () => ({
+                title: "Profile Picture",
 
-            },
-            //tintColor: themeColor,
-            headerLeft: (
-                <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }}
-                    onPress={() => {
-                        navigation.toggleDrawer()
-                        // AsyncStorage.removeItem("headerData"),
-                        //     resetAction = StackActions.reset({
-                        //         index: 0,
-                        //         actions: [NavigationActions.navigate({ routeName: 'Login' })],
-                        //     });
-                        // navigation.dispatch(resetAction);
-                    }}>
-                    <Image
-                        // style={{ height: dynamicSize(20), tintColor: themeColor, width: dynamicSize(20), marginLeft: dynamicSize(15) }}
-                        style={{ marginLeft: dynamicSize(15) }}
-                        source={require("./assets/bars.png")} />
-                    {/* <Image
+            })
+        },
+        Drawer: {
+            screen: Drawer,
+            navigationOptions: () => ({
+                header: null
+            })
+        },
+        DrawerOfAgent: {
+            screen: DrawerOfAgent,
+            navigationOptions: () => ({
+                header: null
+            })
+        },
+        LocalAgents: {
+            screen: LocalAgents,
+            navigationOptions: () => ({
+                header: null
+
+            })
+        },
+        AgentDescription: {
+            screen: AgentDescription,
+            navigationOptions: () => ({
+                title: "Agent",
+
+            })
+        },
+        AgentsServices: {
+            screen: AgentsServices,
+            navigationOptions: () => ({
+                title: "Services",
+
+            })
+        },
+        MyServices: {
+            screen: MyServices,
+            navigationOptions: () => ({
+                header: null
+
+            })
+        },
+        Step1: {
+            screen: Step1,
+            navigationOptions: () => ({
+                title: "Add Property",
+
+
+                //headerTitleStyle: { width:width-70,textAlign:'center',color:themeColor },
+            })
+        },
+        NotificationDetail: {
+            screen: NotificationDetail,
+        },
+        PropertyList: {
+            screen: PropertyList,
+            navigationOptions: ({ navigation }) => ({
+                title: "Your Properties",
+                headerTintColor: '#7a7a7a',
+
+                // headerStyle: {  },
+                headerTitleStyle: {
+                    width: '100%',
+                    textAlign: 'center',
+
+                },
+                //tintColor: themeColor,
+                headerLeft: (
+                    <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => {
+                            navigation.toggleDrawer()
+                            // AsyncStorage.removeItem("headerData"),
+                            //     resetAction = StackActions.reset({
+                            //         index: 0,
+                            //         actions: [NavigationActions.navigate({ routeName: 'Login' })],
+                            //     });
+                            // navigation.dispatch(resetAction);
+                        }}>
+                        <Image
+                            // style={{ height: dynamicSize(20), tintColor: themeColor, width: dynamicSize(20), marginLeft: dynamicSize(15) }}
+                            style={{ marginLeft: dynamicSize(15) }}
+                            source={require("./assets/bars.png")} />
+                        {/* <Image
                         style={{ height: dynamicSize(20), tintColor: themeColor, width: dynamicSize(20), marginLeft: dynamicSize(15) }}
                         source={require("./assets/logout.png")} /> */}
-                </TouchableOpacity>
-            ),
+                    </TouchableOpacity>
+                ),
 
-            headerBackTitle: null,
-            headerRight: (
-                <TouchableOpacity
-                    style={{ paddingTop: dynamicSize(10), paddingLeft: dynamicSize(5) }}
-                    onPress={() => {
-                        // AsyncStorage.removeItem("headerData"),
-                        //     resetAction = StackActions.reset({
-                        //         index: 0,
-                        //         actions: [NavigationActions.navigate({ routeName: 'Login' })],
-                        //     });
-                        // navigation.dispatch(resetAction);
-                        navigation.navigate('Notification')
-                    }}>
-                    <Image
-                        style={{ height: dynamicSize(24), tintColor: themeColor, width: dynamicSize(24), marginRight: dynamicSize(10) }}
-                        source={require("./assets/notification.png")} />
-                    <View style={{
-                        position: 'absolute',
-                        height: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(22) : dynamicSize(16) : dynamicSize(16),
-                        width: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(22) : dynamicSize(16) : dynamicSize(16),
-                        borderRadius: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(11) : dynamicSize(8) : dynamicSize(8),
-                        backgroundColor: '#f49930', alignItems: 'center', justifyContent: 'center', top: dynamicSize(3)
-                    }}>
-                        <Text style={{ color: 'white', fontSize: getFontSize(10) }}>{navigation.state.params ? navigation.state.params.notificationCount : 0}</Text>
-                    </View>
-                </TouchableOpacity>
+                headerBackTitle: null,
+                headerRight: (
+                    <TouchableOpacity
+                        style={{ paddingTop: dynamicSize(10), paddingLeft: dynamicSize(5) }}
+                        onPress={() => {
+                            // AsyncStorage.removeItem("headerData"),
+                            //     resetAction = StackActions.reset({
+                            //         index: 0,
+                            //         actions: [NavigationActions.navigate({ routeName: 'Login' })],
+                            //     });
+                            // navigation.dispatch(resetAction);
+                            navigation.navigate('Notification')
+                        }}>
+                        <Image
+                            style={{ height: dynamicSize(24), tintColor: themeColor, width: dynamicSize(24), marginRight: dynamicSize(10) }}
+                            source={require("./assets/notification.png")} />
+                        <View style={{
+                            position: 'absolute',
+                            height: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(22) : dynamicSize(16) : dynamicSize(16),
+                            width: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(22) : dynamicSize(16) : dynamicSize(16),
+                            borderRadius: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(11) : dynamicSize(8) : dynamicSize(8),
+                            backgroundColor: '#f49930', alignItems: 'center', justifyContent: 'center', top: dynamicSize(3)
+                        }}>
+                            <Text style={{ color: 'white', fontSize: getFontSize(10) }}>{navigation.state.params ? navigation.state.params.notificationCount : 0}</Text>
+                        </View>
+                    </TouchableOpacity>
 
-            ),
-        })
-    },
-    AgentHome: {
-        screen: AgentHome,
-        navigationOptions: ({ navigation }) => ({
-            title: "Home",
-            headerTintColor: '#7a7a7a',
+                ),
+            })
+        },
+        AgentHome: {
+            screen: AgentHome,
+            navigationOptions: ({ navigation }) => ({
+                title: "Home",
+                headerTintColor: '#7a7a7a',
 
-            // headerStyle: {  },
-            headerTitleStyle: {
-                width: '100%',
-                textAlign: 'center',
+                // headerStyle: {  },
+                headerTitleStyle: {
+                    width: '100%',
+                    textAlign: 'center',
 
-            },
-            //tintColor: themeColor,
-            headerLeft: (
-                <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }}
-                    onPress={() => {
+                },
+                //tintColor: themeColor,
+                headerLeft: (
+                    <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }}
+                        onPress={() => {
 
+                            AsyncStorage.removeItem("headerData"),
+                                resetAction = StackActions.reset({
+                                    index: 0,
+                                    actions: [NavigationActions.navigate({ routeName: 'Login' })],
+                                });
+                            navigation.dispatch(resetAction);
+                        }}>
+                        {/* <Image
+                        // style={{ height: dynamicSize(20), tintColor: themeColor, width: dynamicSize(20), marginLeft: dynamicSize(15) }}
+                        style={{ marginLeft: dynamicSize(15) }}
+                        source={require("./assets/bars.png")} /> */}
+                        <Image
+                            style={{ height: dynamicSize(20), tintColor: themeColor, width: dynamicSize(20), marginLeft: dynamicSize(15) }}
+                            source={require("./assets/logout.png")} />
+                    </TouchableOpacity>
+                ),
+
+                headerBackTitle: null,
+                headerRight: (
+                    <TouchableOpacity
+                        style={{ paddingTop: dynamicSize(10), paddingLeft: dynamicSize(5) }}
+                        onPress={() => {
+                            // AsyncStorage.removeItem("headerData"),
+                            //     resetAction = StackActions.reset({
+                            //         index: 0,
+                            //         actions: [NavigationActions.navigate({ routeName: 'Login' })],
+                            //     });
+                            // navigation.dispatch(resetAction);
+                            navigation.navigate('Notification')
+                        }}>
+                        <Image
+                            style={{ height: dynamicSize(24), tintColor: themeColor, width: dynamicSize(24), marginRight: dynamicSize(10) }}
+                            source={require("./assets/notification.png")} />
+                        <View style={{
+                            position: 'absolute',
+                            height: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(22) : dynamicSize(16) : dynamicSize(16),
+                            width: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(22) : dynamicSize(16) : dynamicSize(16),
+                            borderRadius: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(11) : dynamicSize(8) : dynamicSize(8),
+                            backgroundColor: '#f49930', alignItems: 'center', justifyContent: 'center', top: dynamicSize(3)
+                        }}>
+                            <Text style={{ color: 'white', fontSize: getFontSize(10) }}>{navigation.state.params ? navigation.state.params.notificationCount : 0}</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                ),
+            })
+        },
+        PropertyReview: {
+            screen: PropertyReview,
+            navigationOptions: () => ({
+                title: "Property Review",
+
+            })
+        },
+        Message: {
+            screen: Message,
+            navigationOptions: () => ({
+                title: "Messages",
+
+            })
+        },
+        Step2: {
+            screen: Step2,
+            navigationOptions: () => ({
+                title: "Add Property",
+
+            })
+        },
+        Notification: {
+            screen: Notification,
+            navigationOptions: () => ({
+                title: "Notifications",
+
+            })
+        },
+        Appointment: {
+            screen: Appointment,
+            //headerBackTitle:null,
+            navigationOptions: () => ({
+                title: "Appointment",
+                //headerTintColor: themeColor,
+                headerTitleStyle: {
+                    width: '100%',
+                    textAlign: 'center'
+                },
+                headerRight: (<View></View>),
+                headerLeft: (<View></View>),
+            })
+        },
+        Inventory: {
+            screen: Inventory,
+            navigationOptions: () => ({
+                title: "Add Inventory",
+
+            })
+        },
+        PropertyDetails: {
+            screen: PropertyDetails,
+            navigationOptions: () => ({
+                title: "Property Details",
+                //headerTintColor: themeColor,
+
+            })
+
+        },
+        SignUp: {
+            screen: SignUp,
+            navigationOptions: () => ({
+                header: null
+            })
+        },
+        UserType: {
+            screen: UserType,
+            navigationOptions: () => ({
+                title: "",
+
+            })
+        },
+        Demo: {
+            screen: Demo,
+
+        },
+        Verification: {
+            screen: Verification,
+            navigationOptions: () => ({
+                header: null
+            })
+        },
+        Home: {
+            screen: Home,
+            navigationOptions: ({ navigation }) => ({
+                title: "HOME",
+                headerBackTitle: null,
+                headerRight: (
+                    <TouchableOpacity onPress={() => {
                         AsyncStorage.removeItem("headerData"),
                             resetAction = StackActions.reset({
                                 index: 0,
@@ -1290,217 +1428,83 @@ const stackWithoutLogin = createStackNavigator({
                             });
                         navigation.dispatch(resetAction);
                     }}>
-                    {/* <Image
-                        // style={{ height: dynamicSize(20), tintColor: themeColor, width: dynamicSize(20), marginLeft: dynamicSize(15) }}
-                        style={{ marginLeft: dynamicSize(15) }}
-                        source={require("./assets/bars.png")} /> */}
-                    <Image
-                        style={{ height: dynamicSize(20), tintColor: themeColor, width: dynamicSize(20), marginLeft: dynamicSize(15) }}
-                        source={require("./assets/logout.png")} />
-                </TouchableOpacity>
-            ),
+                        <Image
+                            style={{ height: dynamicSize(20), width: dynamicSize(20), marginRight: dynamicSize(20) }}
+                            source={require("./assets/logout.png")} />
+                    </TouchableOpacity>
 
-            headerBackTitle: null,
-            headerRight: (
-                <TouchableOpacity
-                    style={{ paddingTop: dynamicSize(10), paddingLeft: dynamicSize(5) }}
-                    onPress={() => {
-                        // AsyncStorage.removeItem("headerData"),
-                        //     resetAction = StackActions.reset({
-                        //         index: 0,
-                        //         actions: [NavigationActions.navigate({ routeName: 'Login' })],
-                        //     });
-                        // navigation.dispatch(resetAction);
-                        navigation.navigate('Notification')
-                    }}>
-                    <Image
-                        style={{ height: dynamicSize(24), tintColor: themeColor, width: dynamicSize(24), marginRight: dynamicSize(10) }}
-                        source={require("./assets/notification.png")} />
-                    <View style={{
-                        position: 'absolute',
-                        height: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(22) : dynamicSize(16) : dynamicSize(16),
-                        width: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(22) : dynamicSize(16) : dynamicSize(16),
-                        borderRadius: navigation.state.params ? navigation.state.params.notificationCount.length > 1 ? dynamicSize(11) : dynamicSize(8) : dynamicSize(8),
-                        backgroundColor: '#f49930', alignItems: 'center', justifyContent: 'center', top: dynamicSize(3)
-                    }}>
-                        <Text style={{ color: 'white', fontSize: getFontSize(10) }}>{navigation.state.params ? navigation.state.params.notificationCount : 0}</Text>
-                    </View>
-                </TouchableOpacity>
+                ),
+            })
+        },
+        ForgorPassword: {
+            screen: ForgorPassword,
+            navigationOptions: () => ({
+                title: "",
 
-            ),
-        })
-    },
-    PropertyReview: {
-        screen: PropertyReview,
-        navigationOptions: () => ({
-            title: "Property Review",
+            })
+        },
+        ResetPassword: {
+            screen: ResetPassword,
+            navigationOptions: () => ({
+                header: null
+            })
+        },
+        NegotiationLogs: {
+            screen: NegotiationLogs,
+            navigationOptions: () => ({
+                title: "Negotiation Logs",
+            })
+        },
+        Step3: {
+            screen: Step3,
+            navigationOptions: () => ({
+                title: "Add Property",
+                //headerTintColor: themeColor,
+                headerTitleStyle: {
+                    width: '100%',
+                    textAlign: 'center'
+                },
+                headerRight: (<View></View>),
+            })
 
-        })
-    },
-    Message: {
-        screen: Message,
-        navigationOptions: () => ({
-            title: "Messages",
+        },
+        ImagesShow: {
+            screen: ImagesShow,
+            navigationOptions: () => ({
+                header: null
+            })
+        }
 
-        })
-    },
-    Step2: {
-        screen: Step2,
-        navigationOptions: () => ({
-            title: "Add Property",
-
-        })
-    },
-    Notification: {
-        screen: Notification,
-        navigationOptions: () => ({
-            title: "Notifications",
-
-        })
-    },
-    Appointment: {
-        screen: Appointment,
-        //headerBackTitle:null,
-        navigationOptions: () => ({
-            title: "Appointment",
-            //headerTintColor: themeColor,
-            headerTitleStyle: {
-                width: '100%',
-                textAlign: 'center'
-            },
-            headerRight: (<View></View>),
-            headerLeft: (<View></View>),
-        })
-    },
-    Inventory: {
-        screen: Inventory,
-        navigationOptions: () => ({
-            title: "Add Inventory",
-
-        })
-    },
-    PropertyDetails: {
-        screen: PropertyDetails,
-        navigationOptions: () => ({
-            title: "Property Details",
-            //headerTintColor: themeColor,
-
-        })
-
-    },
-    SignUp: {
-        screen: SignUp,
-        navigationOptions: () => ({
-            header: null
-        })
-    },
-    UserType: {
-        screen: UserType,
-        navigationOptions: () => ({
-            title: "",
-
-        })
-    },
-    Demo: {
-        screen: Demo,
-
-    },
-    Verification: {
-        screen: Verification,
-        navigationOptions: () => ({
-            header: null
-        })
-    },
-    Home: {
-        screen: Home,
-        navigationOptions: ({ navigation }) => ({
-            title: "HOME",
-            headerBackTitle: null,
-            headerRight: (
-                <TouchableOpacity onPress={() => {
-                    AsyncStorage.removeItem("headerData"),
-                        resetAction = StackActions.reset({
-                            index: 0,
-                            actions: [NavigationActions.navigate({ routeName: 'Login' })],
-                        });
-                    navigation.dispatch(resetAction);
-                }}>
-                    <Image
-                        style={{ height: dynamicSize(20), width: dynamicSize(20), marginRight: dynamicSize(20) }}
-                        source={require("./assets/logout.png")} />
-                </TouchableOpacity>
-
-            ),
-        })
-    },
-    ForgorPassword: {
-        screen: ForgorPassword,
-        navigationOptions: () => ({
-            title: "",
-
-        })
-    },
-    ResetPassword: {
-        screen: ResetPassword,
-        navigationOptions: () => ({
-            header: null
-        })
-    },
-    NegotiationLogs: {
-        screen: NegotiationLogs,
-        navigationOptions: () => ({
-            title: "Negotiation Logs",
-        })
-    },
-    Step3: {
-        screen: Step3,
-        navigationOptions: () => ({
-            title: "Add Property",
-            //headerTintColor: themeColor,
-            headerTitleStyle: {
-                width: '100%',
-                textAlign: 'center'
-            },
-            headerRight: (<View></View>),
-        })
-
-    },
-    ImagesShow: {
-        screen: ImagesShow,
-        navigationOptions: () => ({
-            header: null
-        })
     }
+        , {
+            initialRouteName: initialRoute,
+            headerMode: 'float',
+            navigationOptions: {
+                headerTintColor: '#7a7a7a',
+                headerStyle: {
+                    borderTopWidth: 0.5,
 
-}
-    , {
-        initialRouteName: "Drawer",
-        headerMode: 'float',
-        navigationOptions: {
-            headerTintColor: '#7a7a7a',
-            headerStyle: {
-                borderTopWidth: 0.5,
+                    borderTopColor: '#e7e7e7',
+                    borderBottomColor: 'white',
 
-                borderTopColor: '#e7e7e7',
-                borderBottomColor: 'white',
+                },
+                headerTitleStyle: {
+                    fontWeight: 'normal',
+                    fontFamily: fontFamily('bold'),
+                    color: '#7a7a7a'
 
-            },
-            headerTitleStyle: {
-                fontWeight: 'normal',
-                fontFamily: fontFamily('bold'),
-                color: '#7a7a7a'
-
+                },
             },
         },
-    },
 
-)
+    )
+}
 
 export const Navigation = createSwitchNavigator({
     HandleNavigation: HandleNavigation,
     stackLogin: { screen: stackLogin },
-    stackWithoutLogin: { screen: stackWithoutLogin },
-    stackWithoutLoginOfAgent: { screen: stackWithoutLoginOfAgent }
+    stackWithoutLogin: { screen: stackWithoutLogin('Drawer') },
+    stackWithoutLoginOfAgent: { screen: stackWithoutLogin('DrawerOfAgent') }
 
 });
 export default Navigation;

@@ -94,7 +94,7 @@ export default class SignUp extends Component {
                     this.setState({
                         errModalMessage: 'Please enter all the credentials.', ErrModalVisible: true
                     })
-                    
+
                 } else {
                     this.setState({
                         errModalMessage: "Please enter valid credentials.", ErrModalVisible: true
@@ -113,7 +113,7 @@ export default class SignUp extends Component {
                 check.blockSelected ? typearr.push(1) : null;
                 check.agentSelected ? typearr.push(2) : null;
                 check.developerSelected ? typearr.push(3) : null;
-
+                //4 for marketplace
 
                 var variables = {
                     email: this.state.email,
@@ -130,7 +130,7 @@ export default class SignUp extends Component {
                         this.setState({ spinnerVisible: false })
                         if (response.response_code == 'success') {
                             global.vendorId = response.vendorId
-                            
+
                             const resetAction = StackActions.reset({
                                 index: 0,
                                 actions: [NavigationActions.navigate({ routeName: 'Verification' })],
@@ -158,9 +158,9 @@ export default class SignUp extends Component {
                 <Toast visible={this.state.showToast} message={this.state.alertMessage} />
                 <Spinner visible={this.state.spinnerVisible} />
                 <ErrModal visible={this.state.ErrModalVisible} message={this.state.errModalMessage} modalClose={() => this.setState({ ErrModalVisible: false })} />
-                <Image 
-                // style={{ tintColor: "#56B24D", height: dynamicSize(54), width: dynamicSize(200) }} 
-                source={require("../assets/logo-business.png")} />
+                <Image
+                    // style={{ tintColor: "#56B24D", height: dynamicSize(54), width: dynamicSize(200) }} 
+                    source={require("../assets/logo-business.png")} />
                 <View style={{ paddingVertical: dynamicSize(3), flexDirection: "row", alignItems: "center", width: "85%", borderColor: "#E9E9E9", borderWidth: dynamicSize(1), marginTop: dynamicSize(20), paddingHorizontal: dynamicSize(10) }}>
                     <Image resizeMode="contain"
                         //style={{ height: dynamicSize(25), width: dynamicSize(25) }}

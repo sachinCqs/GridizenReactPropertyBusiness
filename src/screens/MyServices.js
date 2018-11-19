@@ -93,8 +93,8 @@ class MyServices extends Component {
     }
     makeImageView(item) {
         return (
-            <View style={{ height: dynamicSize(40), width: dynamicSize(40), borderRadius: dynamicSize(20), borderWidth: dynamicSize(1), borderColor: '#e7e7e7' }}>
-                <Image style={{ height: dynamicSize(40), width: dynamicSize(40), borderRadius: dynamicSize(20), marginRight: dynamicSize(3) }} resizeMode='cover'
+            <View style={{ height: dynamicSize(40), width: dynamicSize(40), borderRadius: dynamicSize(20), borderWidth: dynamicSize(1), alignItems: 'center', justifyContent: 'center', marginRight: dynamicSize(3), borderColor: '#e7e7e7' }}>
+                <Image style={{ height: dynamicSize(38), width: dynamicSize(38), borderRadius: dynamicSize(19), }} resizeMode='cover'
                     source={item.image != '' ? { uri: item.image + '?' + new Date() } : require('../assets/userProfile.png')} />
             </View>
         )
@@ -115,7 +115,9 @@ class MyServices extends Component {
                             {item.latestAgentQuotes.length != 0 ? this.makeAgentsImageView(item.latestAgentQuotes) : null}
                         </View>
 
-                        <Text onPress={() => this.props.navigation.navigate('PropertyDetails', { data: { id: item.id } })}
+                        <Text onPress={() =>
+                            this.props.navigation.navigate('PropertyDetails', { data: { id: item.id } })
+                        }
                             style={{ fontFamily: fontFamily('bold'), fontSize: getFontSize(12), color: '#7388e7', alignSelf: 'flex-end' }}>View property</Text>
 
                     </View>

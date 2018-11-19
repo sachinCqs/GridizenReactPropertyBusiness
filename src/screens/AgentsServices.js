@@ -5,6 +5,36 @@ const { height, width } = Dimensions.get('window');
 import { ErrModal, Toast, Spinner } from '../components/toast';
 import { NodeAPI } from '../services/webservice';
 import DateTimePicker from 'react-native-modal-datetime-picker';
+var carpenterServices = [
+    {
+        name: 'Repairs & fixes',
+        select: false,
+    },
+    {
+        name: 'New furniture making',
+        select: false,
+    }
+]
+var plumbingServices = [
+    {
+        name: 'Repairs & fixes',
+        select: false,
+    },
+    {
+        name: 'Standard installation services',
+        select: false,
+    }
+]
+var electricianServices = [
+    {
+        name: 'Repairs & fixes',
+        select: false,
+    },
+    {
+        name: 'Standard installation services',
+        select: false,
+    }
+]
 export default class AgentList extends Component {
 
 
@@ -45,10 +75,26 @@ export default class AgentList extends Component {
                 }
             ],
             selectedArr: [],
+            title: 'ggent service',
             propertyId: this.props.navigation.state.params.propertyId
         }
     }
     componentWillMount() {
+        var type = this.props.navigation.state.params.serviceType
+
+        if (type == 'Plumbing') {
+            this.setState({
+                services: plumbingServices, title: "plumbing service"
+            })
+        } else if (type == 'Electrician') {
+            this.setState({
+                services: electricianServices, title: "electrician service"
+            })
+        } else if (type == 'Carpenters') {
+            this.setState({
+                services: carpenterServices, title: "carpenter service"
+            })
+        }
         AsyncStorage.getItem("headerData").then(data => {
             let paramData = JSON.parse(data)
             this.setState({
@@ -151,7 +197,7 @@ export default class AgentList extends Component {
 
                 <ErrModal visible={this.state.ErrModalVisible} message={this.state.errModalMessage} modalClose={() => this.setState({ ErrModalVisible: false })} />
                 <View style={{ paddingHorizontal: dynamicSize(15), paddingVertical: dynamicSize(20) }}>
-                    <Text style={{ fontFamily: fontFamily('bold'), fontSize: getFontSize(16), color: '#7a7a7a', textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: dynamicSize(5) }}>Which agent service do you require?</Text>
+                    <Text style={{ fontFamily: fontFamily('bold'), fontSize: getFontSize(16), color: '#7a7a7a', textAlign: 'left', alignSelf: 'flex-start', marginHorizontal: dynamicSize(5) }}>Which {" " + this.state.title + " "} do you require?</Text>
 
                     <FlatList
                         data={this.state.services}

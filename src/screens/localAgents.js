@@ -191,10 +191,12 @@ export default class AgentList extends Component {
 
                                     </TouchableOpacity>
                                     :
-                                    <TouchableOpacity>
-                                        <Text style={{ fontFamily: fontFamily('bold'), fontSize: getFontSize(12), color: '#7388e7', alignSelf: 'flex-end' }}>Contact</Text>
 
-                                    </TouchableOpacity>
+                                    <Text
+                                        onPress={() => this.props.navigation.navigate("Message", { data: { propertyId: item.propertyDetail.id, userId: item.agentDetail.id }, callbackOfNotification: () => null })}
+                                        style={{ fontFamily: fontFamily('bold'), fontSize: getFontSize(12), color: '#7388e7', alignSelf: 'flex-end' }}>Contact</Text>
+
+
                             }
 
                         </View>

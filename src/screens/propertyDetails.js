@@ -36,6 +36,7 @@ export default class PropertyDetail extends Component {
                 { image: { uri: "https://mediacdn.99acres.com/7211/5/144225615M-1539183204.jpeg" } },
                 { image: { uri: "https://mediacdn.99acres.com/7211/5/144225621M-1539183062.jpeg" } },
             ],
+            servicesArr: [],
             description: "A 3 bedroom resale flat, located in sarita vihar, delhi south, is available. It is a ready to move in flat located in on request. Situated in a prominent locality, it is a 5-10 year old property, which is in its prime condition. The flat is on the 1st floor of the building. Aesthetically designed, this property has 2 bathroom(S). The property also has more than 3balcony(S). The flat has a good view of the locality. The flat is a freehold property and has a super built-Up area of 1750. 0 sq. Ft. The flat offers good security. The unit has 2 open parking."
 
         };
@@ -231,10 +232,55 @@ export default class PropertyDetail extends Component {
 
     }
     pickerDropdownModalRowSelected(item) {
-        switch (item) {
-            case 'Agent Services': this.props.navigation.navigate('AgentsServices', { propertyId: this.state.data.id })
+        // switch (item.name) {
+        //     case 'Agent Services': this.props.navigation.navigate('AgentsServices', { propertyId: this.state.data.id })
+        // }
+        if (item.is_deleted && item.is_deleted == true) {
+
+        } else {
+            this.props.navigation.navigate('AgentsServices', { propertyId: this.state.data.id, serviceType: item.name })
+
         }
         this.setState({ bottomModalVisible: false })
+    }
+    openServicesModal() {
+        var arr = []
+
+        // this.setState({ bottomModalVisible: true })
+
+        this.setState({
+
+            spinnerVisible: true
+        })
+
+        // getAllProperties.json/:page/:pageSize/:sortBy/:sortType/:search?
+        return NodeAPI({}, "getServiceTypes.json/", 'GET', this.state.headerData.token, this.state.headerData.userid)
+            .then(responseJson => {
+                this.setState({ spinnerVisible: false })
+                if (responseJson.response_code === 'success') {
+
+                    this.state.data.agentService && this.state.data.agentService.length == 0 ?
+                        responseJson.categories.unshift({ "name": "Agent Services" }) :
+                        null
+                    this.setState({ servicesArr: responseJson.categories })
+                    setTimeout(() => {
+                        this.setState({ bottomModalVisible: true })
+                    }, 100);
+                    console.log(JSON.stringify(responseJson))
+
+
+                } else {
+
+                    this.setState({ showToast: true, alertMessage: responseJson.msg })
+                    setTimeout(() => {
+                        this.setState({ showToast: false })
+
+                    }, 3000);
+                }
+
+            })
+
+
     }
 
     render() {
@@ -249,7 +295,7 @@ export default class PropertyDetail extends Component {
                     }
                     titleText={'Select Service Type'}
                     pickerDropdownModalListData={
-                        ['Agent Services', 'Cleaning Services', 'Repair Services']
+                        this.state.servicesArr
                     }
                     pickerDropdownModalRow={({ item, index }) => (
                         <TouchableWithoutFeedback
@@ -269,7 +315,7 @@ export default class PropertyDetail extends Component {
                                 <Text
                                     style={{ fontSize: getFontSize(18), color: "#7a7a7a" }}
                                 >
-                                    {item}
+                                    {item.name}
                                 </Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -372,12 +418,12 @@ export default class PropertyDetail extends Component {
                         // </View>
                         <View style={[styles.accomodationView, { marginBottom: dynamicSize(20) }]}>
 
-                            {this.state.data.agentService && this.state.data.agentService.length == 0 ?
-                                <TouchableOpacity style={{ flex: 1, paddingVertical: dynamicSize(15), alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: '#A2A8A2' }}
-                                    onPress={() => this.setState({ bottomModalVisible: true })} >
-                                    <Text style={styles.boldText}>Services</Text>
-                                </TouchableOpacity>
-                                : null}
+                            {/* {this.state.data.agentService && this.state.data.agentService.length == 0 ? */}
+                            <TouchableOpacity style={{ flex: 1, paddingVertical: dynamicSize(15), alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: '#A2A8A2' }}
+                                onPress={() => this.openServicesModal()} >
+                                <Text style={styles.boldText}>Services</Text>
+                            </TouchableOpacity>
+                            {/* : null} */}
                             <TouchableOpacity style={{ flex: 1, paddingVertical: dynamicSize(15), alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: '#A2A8A2', backgroundColor: '#F49930' }}
                             >
                                 <Text style={[styles.boldText, { color: 'white' }]}>Price Trends</Text>
